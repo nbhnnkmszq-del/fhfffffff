@@ -1,34 +1,36 @@
 {
   "version": "12.68.0.33",
-  "device_id": "WAZEER-BYPASS-666-XYZ",
-  "app_control": {
-    "is_maintenance": false,
-    "force_update": false,
-    "update_url": "https://t.me/your_channel",
-    "show_alert": true,
-    "alert_title": "نظام الوزير V1",
-    "alert_msg": "تم الاتصال بالسيرفر.. نظام فك الحظر والأوفستات يعمل الآن ✅"
-  },
+  "device_id": "WAZEER-PRO-BYPASS",
   "offsets": [
     {
-      "name": "Bypass SS03",
-      "address": "0x102B3C4D5",
+      "name": "Chat Screenshot",
+      "address": "0x1006337fc",
       "value": "0xD503201F"
     },
     {
-      "name": "Bypass SS06",
-      "address": "0x103AABBCC",
-      "value": "0x52800000"
+      "name": "Story Screenshot",
+      "address": "0x10290de24",
+      "value": "0xD503201F"
     },
     {
-      "name": "Disable Screenshot",
-      "address": "0x104556677",
+      "name": "Direct Snap Screenshot",
+      "address": "0x1031ed48c",
+      "value": "0xD503201F"
+    },
+    {
+      "name": "View Receipt",
+      "address": "0x10317d0a4",
+      "value": "0xD503201F"
+    },
+    {
+      "name": "AppAttest Bypass",
+      "address": "0x100edc52c",
       "value": "0xD503201F"
     }
   ],
-  "menu_settings": {
-    "show_menu": true,
-    "menu_title": "قائمة الوزير",
-    "buttons": ["تخطي S003", "تخطي S006", "إخفاء تصوير"]
+  "app_control": {
+    "show_alert": true,
+    "alert_title": "تم الربط بالسيرفر",
+    "alert_msg": "تم حقن أوفستات التصوير والحظر بنجاح ✅"
   }
 }
