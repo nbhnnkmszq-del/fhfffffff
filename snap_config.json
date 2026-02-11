@@ -1,8 +1,11 @@
-"offsets": [
+{
+  "version": "12.68.0.33",
+  "device_id": "WAZEER-777",
+  "offsets": [
     {
       "name": "Test",
       "address": "0x1006337fc",
       "value": "0xD503201F"
     }
-    // احذف الباقي مؤقتاً
-]
+  ]
+}
