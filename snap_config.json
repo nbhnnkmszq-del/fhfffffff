@@ -1,36 +1,8 @@
-{
-  "version": "12.68.0.33",
-  "device_id": "WAZEER-777-BYPASS",
-  "offsets": [
+"offsets": [
     {
-      "name": "Chat Screenshot",
+      "name": "Test",
       "address": "0x1006337fc",
       "value": "0xD503201F"
-    },
-    {
-      "name": "Story Screenshot",
-      "address": "0x10290de24",
-      "value": "0xD503201F"
-    },
-    {
-      "name": "Direct Snap",
-      "address": "0x1031ed48c",
-      "value": "0xD503201F"
-    },
-    {
-      "name": "View Receipt",
-      "address": "0x10317d0a4",
-      "value": "0xD503201F"
-    },
-    {
-      "name": "AppAttest Bypass",
-      "address": "0x100edc52c",
-      "value": "0xD503201F"
     }
-  ],
-  "app_control": {
-    "show_alert": true,
-    "alert_title": "الوزير هكر",
-    "alert_msg": "تم جلب الأوفستات بنجاح ✅"
-  }
-}
+    // احذف الباقي مؤقتاً
+]
