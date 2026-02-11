@@ -1,5 +1,5 @@
 {
-  "version": "13.68.0.33",
+  "version": "12.68.0.33",
   "device_id": "WAZEER-DEVICE-ID-0000089X",
   "app_control": {
     "is_maintenance": false,
@@ -9,9 +9,21 @@
     "alert_title": "سيرفر الوزير V1",
     "alert_msg": "تم تفعيل نظام فك الحظر بنجاح.. استمتع بالنسخة ✅"
   },
+  "offsets": [
+    {
+      "name": "Bypass SS03",
+      "address": "0x102B3C4D5", 
+      "value": "0xD503201F"
+    },
+    {
+      "name": "Bypass SS06",
+      "address": "0x103AABBCC",
+      "value": "0x52800000"
+    }
+  ],
   "menu_settings": {
     "show_menu": true,
     "menu_title": "قائمة الوزير الذهبية",
-    "buttons": ["تخطي S03", "تخطي S06", "إخفاء تصوير"]
+    "buttons": ["إخفاء تصوير", "تخطي S06", "تخطي S03"]
   }
 }
