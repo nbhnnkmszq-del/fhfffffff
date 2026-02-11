@@ -1,5 +1,7 @@
 {
-  "version": "13.1.0.12",
-  "device_id": "NEW-IPHONE-15-PRO",
-  "bypass_enabled": true
+  "version": "12.68.0.33",
+  "device_id": "FF-00-AA-11-BB-22-CC-33-DD-44",
+  "anti_crash": true,
+  "safe_mode": true,
+  "alert_message": "تم تطبيق هوية جديدة للجهاز.. جرب الدخول الآن!"
 }
