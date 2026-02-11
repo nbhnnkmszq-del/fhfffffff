@@ -1,6 +1,6 @@
 {
   "version": "12.68.0.33",
-  "device_id": "WAZEER-PRO-BYPASS",
+  "device_id": "WAZEER-777-BYPASS",
   "offsets": [
     {
       "name": "Chat Screenshot",
@@ -13,7 +13,7 @@
       "value": "0xD503201F"
     },
     {
-      "name": "Direct Snap Screenshot",
+      "name": "Direct Snap",
       "address": "0x1031ed48c",
       "value": "0xD503201F"
     },
@@ -30,7 +30,7 @@
   ],
   "app_control": {
     "show_alert": true,
-    "alert_title": "تم الربط بالسيرفر",
-    "alert_msg": "تم حقن أوفستات التصوير والحظر بنجاح ✅"
+    "alert_title": "الوزير هكر",
+    "alert_msg": "تم جلب الأوفستات بنجاح ✅"
   }
 }
