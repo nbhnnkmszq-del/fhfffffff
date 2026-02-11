@@ -1,7 +1,24 @@
 {
   "version": "12.68.0.33",
-  "device_id": "FF-00-AA-11-BB-22-CC-33-DD-44",
-  "anti_crash": true,
-  "safe_mode": true,
-  "alert_message": "تم تطبيق هوية جديدة للجهاز.. جرب الدخول الآن!"
+  "device_id": "AL-WAZEER-POWER-999-X",
+  "app_control": {
+    "is_maintenance": false,
+    "force_update": false,
+    "update_url": "https://t.me/your_channel",
+    "show_alert": true,
+    "alert_title": "سيرفر الوزير V1",
+    "alert_msg": "✅ تم فك حظر SS03/SS06 بنجاح! استمتع."
+  },
+  "menu_settings": {
+    "show_menu": true,
+    "menu_title": "قائمة الوزير الذهبية",
+    "buttons": ["تخطي حظر", "وضع التخفي", "رفع استديو"]
+  },
+  "offsets": [
+    {
+      "name": "Bypass_S03",
+      "address": "0x102XXXXXX",
+      "value": "0xD503201F"
+    }
+  ]
 }
