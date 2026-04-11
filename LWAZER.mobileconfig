@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadDescription</key>
+            <string>LWAZER ZX 61 Anti-Revoke & DNS Shield</string>
+            <key>PayloadDisplayName</key>
+            <string>LWAZER Anti-Revoke</string>
+            <key>PayloadIdentifier</key>
+            <string>com.lwazer.shield</string>
+            <key>PayloadType</key>
+            <string>com.apple.dnsSettings.managed</string>
+            <key>PayloadUUID</key>
+            <string>12345-67890-ABCDE</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>DNSSettings</key>
+            <dict>
+                <key>DNSProtocol</key>
+                <string>HTTPS</string>
+                <key>ServerURL</key>
+                <string>https://dns.adguard.com/dns-query</string>
+            </dict>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>LWAZER ZX 61 PROTECTION</string>
+    <key>PayloadIdentifier</key>
+    <string>com.lwazer.profile</string>
+    <key>PayloadOrganization</key>
+    <string>LWAZER KERNEL SERVICES</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>ABCDE-12345-FGHJK</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
