@@ -5,18 +5,6 @@
     <key>PayloadContent</key>
     <array>
         <dict>
-            <key>PayloadDescription</key>
-            <string>LWAZER ZX 61 Anti-Revoke & DNS Shield</string>
-            <key>PayloadDisplayName</key>
-            <string>LWAZER Anti-Revoke</string>
-            <key>PayloadIdentifier</key>
-            <string>com.lwazer.shield</string>
-            <key>PayloadType</key>
-            <string>com.apple.dnsSettings.managed</string>
-            <key>PayloadUUID</key>
-            <string>12345-67890-ABCDE</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
             <key>DNSSettings</key>
             <dict>
                 <key>DNSProtocol</key>
@@ -24,18 +12,34 @@
                 <key>ServerURL</key>
                 <string>https://dns.adguard.com/dns-query</string>
             </dict>
+            <key>PayloadDescription</key>
+            <string>LWAZER ZX 61 Anti-Revoke System. Powered by @ROOT_DEX</string>
+            <key>PayloadDisplayName</key>
+            <string>LWAZER SHIELD v1.0</string>
+            <key>PayloadIdentifier</key>
+            <string>com.lwazer.dns.config</string>
+            <key>PayloadType</key>
+            <string>com.apple.dnsSettings.managed</string>
+            <key>PayloadUUID</key>
+            <string>A1B2C3D4-E5F6-4789-A123-B456C789D012</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
         </dict>
     </array>
+    <key>PayloadDescription</key>
+    <string>حماية الوزير لحجب سيرفرات التحقق وإطالة عمر الشهادات - @ROOT_SNAPWAZZER</string>
     <key>PayloadDisplayName</key>
-    <string>LWAZER ZX 61 PROTECTION</string>
+    <string>🛡️ LWAZER ANTI-REVOKE</string>
     <key>PayloadIdentifier</key>
     <string>com.lwazer.profile</string>
     <key>PayloadOrganization</key>
     <string>LWAZER KERNEL SERVICES</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>ABCDE-12345-FGHJK</string>
+    <string>D1E2F3A4-B5C6-4789-9876-54321ABCDEF0</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
