@@ -3,184 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LWAZER SUPREME HUB | v3.0 Elite</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Cairo:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>LWAZER SUPREME | v3.0 ELITE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
+    
     <style>
         :root {
-            --neon: #00ff88;
-            --sky: #00ccff;
             --gold: #d4af37;
-            --bg: #020202;
-            --card-glass: rgba(15, 15, 15, 0.8);
-            --border-glow: rgba(0, 204, 255, 0.3);
+            --neon-green: #00ff88;
+            --deep-bg: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(212, 175, 55, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body { background: var(--bg); color: #fff; overflow-x: hidden; }
+        body { background: var(--deep-bg); color: #fff; overflow-x: hidden; }
 
-        /* تأثير الخلفية المتحركة */
-        .stars-bg { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at center, #111 0%, #000 100%); }
-        .glow-orb { position: absolute; width: 300px; height: 300px; background: var(--sky); filter: blur(150px); opacity: 0.1; border-radius: 50%; animation: move 10s infinite alternate; }
+        /* شريط المعنويات والإطلاعات (Ticker) */
+        .ticker-wrap {
+            width: 100%; overflow: hidden; background: rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid var(--gold); padding: 5px 0;
+        }
+        .ticker {
+            display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite;
+            font-size: 12px; font-weight: bold; color: var(--gold);
+        }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        @keyframes move { from { transform: translate(-50%, -50%); } to { transform: translate(50%, 50%); } }
+        /* الهيدر */
+        header {
+            padding: 20px; text-align: center; backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo { font-family: 'Orbitron'; font-size: 28px; letter-spacing: 5px; color: var(--gold); text-shadow: 0 0 15px var(--gold); }
 
-        /* Header & Logo */
-        header { padding: 25px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'Orbitron'; font-size: 24px; font-weight: 900; background: linear-gradient(to right, var(--sky), var(--neon)); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 15px var(--border-glow); }
+        /* السلايدر الفخم (Slider) */
+        .premium-slider {
+            width: 100%; height: 220px; overflow: hidden; padding: 20px 0;
+        }
+        .slider-track {
+            display: flex; gap: 15px; padding: 0 20px; transition: transform 0.5s ease;
+        }
+        .slide-card {
+            min-width: 300px; height: 180px; border-radius: 20px;
+            background: linear-gradient(135deg, #111, #222);
+            border: 1px solid var(--border); display: flex; align-items: center; padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .slide-card img { width: 80px; height: 80px; border-radius: 18px; margin-left: 15px; border: 2px solid var(--gold); }
 
-        /* Premium Slider */
-        .slider-container { width: 100%; height: 250px; padding: 20px; overflow: hidden; position: relative; }
-        .slider-track { display: flex; gap: 20px; transition: 0.5s ease-in-out; }
-        .slide { min-width: 85%; height: 200px; border-radius: 25px; background: linear-gradient(45deg, #0f0f0f, #1a1a1a); border: 1px solid var(--border-glow); display: flex; align-items: center; padding: 20px; position: relative; overflow: hidden; }
-        .slide img { width: 100px; height: 100px; border-radius: 20px; box-shadow: 0 10px 30px #000; margin-left: 20px; }
-        .slide-info h2 { font-family: 'Orbitron'; font-size: 20px; color: var(--sky); }
-        .slide-info p { font-size: 12px; color: #888; margin-top: 5px; }
+        /* قسم روابطك القديمة (الأساسية) */
+        .legacy-section { padding: 20px; }
+        .section-title { font-family: 'Orbitron'; color: var(--gold); margin-bottom: 15px; font-size: 14px; border-right: 4px solid var(--gold); padding-right: 10px; }
 
-        /* App Store Grid */
-        .search-bar { padding: 20px; }
-        .search-bar input { width: 100%; padding: 15px 25px; border-radius: 20px; border: 1px solid #222; background: #080808; color: #fff; font-size: 16px; outline: none; transition: 0.3s; }
-        .search-bar input:focus { border-color: var(--neon); box-shadow: 0 0 15px var(--neon); }
+        .app-list { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .app-card {
+            background: var(--glass); border: 1px solid var(--border); border-radius: 25px;
+            padding: 15px; display: flex; align-items: center; transition: 0.3s;
+        }
+        .app-card:hover { background: rgba(212, 175, 55, 0.05); transform: scale(1.02); }
+        .app-card img { width: 60px; height: 60px; border-radius: 15px; margin-left: 15px; }
+        .app-info { flex: 1; text-align: right; }
+        .app-info h3 { font-size: 16px; margin-bottom: 5px; }
+        .app-info p { font-size: 10px; color: #777; }
 
-        .app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; padding: 20px; }
-        .app-item { background: var(--card-glass); border-radius: 25px; padding: 15px; border: 1px solid #1a1a1a; text-align: center; transition: 0.4s; position: relative; }
-        .app-item:hover { transform: translateY(-10px); border-color: var(--sky); box-shadow: 0 10px 30px rgba(0,204,255,0.1); }
-        .app-item img { width: 80px; height: 80px; border-radius: 20px; margin-bottom: 12px; border: 1px solid #222; }
-        .app-item h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; height: 40px; overflow: hidden; }
+        .btn-install {
+            background: var(--gold); color: #000; padding: 8px 15px; border-radius: 12px;
+            text-decoration: none; font-weight: bold; font-size: 12px;
+        }
 
-        .btn-group { display: flex; flex-direction: column; gap: 8px; }
-        .btn-dl { padding: 10px; border-radius: 12px; font-size: 10px; font-weight: 900; text-decoration: none; font-family: 'Orbitron'; transition: 0.3s; }
-        .btn-install { background: var(--sky); color: #000; }
-        .btn-ipa { background: #111; color: #fff; border: 1px solid #333; }
-        .btn-dl:hover { opacity: 0.8; transform: scale(1.05); }
+        /* قسم الـ API الذكي */
+        #api-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; padding: 20px; }
+        .api-item {
+            background: #0a0a0a; border-radius: 20px; padding: 15px; text-align: center;
+            border: 1px solid #1a1a1a; transition: 0.3s;
+        }
+        .api-item:hover { border-color: var(--neon-green); }
+        .api-item img { width: 70px; height: 70px; border-radius: 18px; margin-bottom: 10px; }
+        .api-item h4 { font-size: 12px; height: 35px; overflow: hidden; margin-bottom: 10px; }
 
-        /* Stats & Footer */
-        .stats-section { padding: 40px 20px; text-align: center; background: #050505; border-top: 1px solid #111; }
-        .stat-card { display: inline-block; margin: 10px; padding: 20px; background: #0a0a0a; border-radius: 15px; min-width: 100px; }
-        .stat-card b { display: block; font-size: 20px; color: var(--neon); font-family: 'Orbitron'; }
-        .stat-card span { font-size: 10px; color: #555; }
-
-        /* Animation Keyframes */
-        .fade-in { opacity: 0; transform: translateY(20px); }
+        /* لودر التحميل */
+        .loader-api { grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gold); font-family: 'Orbitron'; }
     </style>
 </head>
 <body>
 
-    <div class="stars-bg"></div>
-    <div class="glow-orb"></div>
+    <div class="ticker-wrap">
+        <div class="ticker">
+            تنبيه: تم تحديث روابط السناب v13.80 | حالة الشهادة: تعمل بنجاح ✅ | مطور الموقع: الوزير ZX | كسر الاحتكار هو هدفنا الأول ⚡️
+        </div>
+    </div>
 
     <header>
-        <div class="logo">LWAZER <span>STORE</span></div>
-        <a href="https://t.me/ROOT_SNAPWAZZER" style="color:var(--sky); font-size:22px;"><i class="fab fa-telegram"></i></a>
+        <div class="logo">LWAZER ELITE</div>
     </header>
 
-    <div class="slider-container">
-        <div class="slider-track" id="featuredSlider">
+    <div class="premium-slider">
+        <div class="slider-track" id="slider">
+            <div class="slide-card">
+                <img src="https://i.ibb.co/VWVr2fC/snap.png" alt="">
+                <div>
+                    <h2 style="color: var(--gold); font-family: 'Orbitron'; font-size: 18px;">SNAP LWAZER</h2>
+                    <p style="font-size: 11px;">نسخة تخطي الانتظار الحصرية</p>
+                </div>
             </div>
-    </div>
-
-    <div class="search-bar">
-        <input type="text" id="appSearch" placeholder="ابحث عن تطبيقك المفضل..." oninput="filterApps()">
-    </div>
-
-    <main class="app-grid" id="appGrid">
-        <div style="grid-column: 1/-1; text-align: center; padding: 50px; color: var(--sky);">
-            <i class="fas fa-spinner fa-spin fa-2x"></i>
-            <p style="margin-top: 15px; font-family: 'JetBrains Mono';">FETCHING EXTERNAL_APPS_API...</p>
+            <div class="slide-card" style="border-color: var(--neon-green);">
+                <img src="https://i.ibb.co/f4p9Ff3/tiktok.png" alt="">
+                <div>
+                    <h2 style="color: var(--neon-green); font-family: 'Orbitron'; font-size: 18px;">TIKTOK MOD</h2>
+                    <p style="font-size: 11px;">حفظ الفيديوهات بدون علامة مائية</p>
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
 
-    <section class="stats-section">
-        <div class="stat-card"><b>500+</b><span>التطبيقات</span></div>
-        <div class="stat-card"><b>10k+</b><span>التحميلات</span></div>
-        <div class="stat-card"><b>ONLINE</b><span>السيرفر</span></div>
+    <section class="legacy-section">
+        <div class="section-title">تطبيقات الوزير الأساسية (Direct)</div>
+        <div class="app-list">
+            <div class="app-card">
+                <img src="https://i.ibb.co/VWVr2fC/snap.png" alt="">
+                <div class="app-info">
+                    <h3>Scarlet Install</h3>
+                    <p>تثبيت متجر سكارليت الأساسي</p>
+                </div>
+                <a href="itms-services://?action=download-manifest&url=https://nbhnnkmszq-del.github.io/fhfffffff/scarlet.plist" class="btn-install">تثبيت</a>
+            </div>
+            <div class="app-card">
+                <img src="https://i.ibb.co/f4p9Ff3/tiktok.png" alt="">
+                <div class="app-info">
+                    <h3>E-Sign Pro</h3>
+                    <p>توقيع الملفات بدون كمبيوتر</p>
+                </div>
+                <a href="itms-services://?action=download-manifest&url=https://nbhnnkmszq-del.github.io/fhfffffff/esign.plist" class="btn-install">تثبيت</a>
+            </div>
+        </div>
     </section>
 
-    <footer style="padding: 40px; text-align: center; border-top: 1px solid #111;">
-        <h3 style="font-family:'Orbitron'; color:var(--gold); font-size:14px;">DEVELOPED BY LWAZER ZX 61</h3>
-        <p style="color:#444; font-size:10px; margin-top:10px;">جميع الحقوق محفوظة لشبكة الوزير 2026</p>
+    <section class="legacy-section">
+        <div class="section-title">تطبيقات خارجية (API Live Fetch)</div>
+        <div id="api-grid">
+            <div class="loader-api"><i class="fas fa-sync fa-spin"></i> جاري جلب التطبيقات حقيقية...</div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; color: #444; font-size: 10px; font-family: 'Orbitron';">
+        DESIGNED BY LWAZER © 2026<br>MICRO-WAVE SYSTEM ACTIVE
     </footer>
 
     <script>
-        // API حقيقي لجلب التطبيقات من مصدر خارجي (مثال لمصدر Github)
-        const API_SOURCE = "https://raw.githubusercontent.com/LwazerRepo/Data/main/apps.json"; 
-        
-        // بيانات تجريبية في حال لم يرد الـ API
-        const fallbackApps = [
-            { name: "SnapFix Pro", icon: "https://i.ibb.co/VWVr2fC/snap.png", version: "13.80", plist: "https://example.com/snap.plist", ipa: "https://example.com/snap.ipa", featured: true },
-            { name: "TikTok Lwazer", icon: "https://i.ibb.co/f4p9Ff3/tiktok.png", version: "32.0", plist: "https://example.com/tk.plist", ipa: "https://example.com/tk.ipa", featured: true },
-            { name: "Instagram Rocket", icon: "https://i.ibb.co/6P66L1S/insta.png", version: "Latest", plist: "https://example.com/ins.plist", ipa: "https://example.com/ins.ipa", featured: false },
-            { name: "WhatsApp Gold", icon: "https://i.ibb.co/0XzL0mH/wa.png", version: "2.24", plist: "https://example.com/wa.plist", ipa: "https://example.com/wa.ipa", featured: false }
-        ];
-
-        let allApps = [];
-
-        async function fetchApps() {
+        // نظام جلب تطبيقات حقيقي من مستودع خارجي (GitHub Repos)
+        async function fetchExternalApps() {
+            const grid = document.getElementById('api-grid');
             try {
-                // جلب البيانات الحقيقية
-                // const response = await fetch(API_SOURCE);
-                // allApps = await response.json();
-                allApps = fallbackApps; // للاختبار
-                renderApps(allApps);
-                renderFeatured(allApps);
+                // نستخدم هنا API حقيقي يجلب بيانات تطبيقات مفتوحة المصدر أو تطبيقات IPA
+                // كمثال سأجلب لك بيانات حقيقية من مصدر مفتوح
+                const response = await fetch('https://api.github.com/repos/qnblackcat/uYouPlus/releases');
+                const data = await response.json();
+                
+                grid.innerHTML = ''; // مسح اللودر
+                
+                // عرض آخر 6 إصدارات حقيقية كأمثلة لتطبيقات
+                data.slice(0, 8).forEach(app => {
+                    const item = document.createElement('div');
+                    item.className = 'api-item';
+                    item.innerHTML = `
+                        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/e3/da/0d/e3da0d15-5654-2c26-f872-964096d2994e/AppIcon-0-1x_U007emarketing-0-7-0-sRGB-85-220.png/1200x630wa.png" alt="">
+                        <h4>${app.name.substring(0, 20)}...</h4>
+                        <a href="${app.assets[0].browser_download_url}" class="btn-install" style="background:#222; color:#00ff88; border:1px solid #00ff88;">IPA</a>
+                    `;
+                    grid.appendChild(item);
+                });
             } catch (error) {
-                console.error("API Fetch Error");
-                renderApps(fallbackApps);
+                grid.innerHTML = '<p style="color:red;">خطأ في جلب بيانات الـ API</p>';
             }
         }
 
-        function renderApps(apps) {
-            const grid = document.getElementById('appGrid');
-            grid.innerHTML = apps.map(app => `
-                <div class="app-item fade-in">
-                    <img src="${app.icon}" alt="${app.name}">
-                    <h3>${app.name}</h3>
-                    <div class="btn-group">
-                        <a href="itms-services://?action=download-manifest&url=${app.plist}" class="btn-dl btn-install">تثبيت مباشر</a>
-                        <a href="${app.ipa}" class="btn-dl btn-ipa">تحميل IPA</a>
-                    </div>
-                </div>
-            `).join('');
-            
-            gsap.to(".fade-in", { opacity: 1, y: 0, stagger: 0.1, duration: 0.8 });
-        }
-
-        function renderFeatured(apps) {
-            const slider = document.getElementById('featuredSlider');
-            const featured = apps.filter(a => a.featured);
-            slider.innerHTML = featured.map(app => `
-                <div class="slide">
-                    <img src="${app.icon}">
-                    <div class="slide-info">
-                        <h2>${app.name}</h2>
-                        <p>إصدار حصري: ${app.version}</p>
-                        <a href="${app.ipa}" style="color:var(--neon); font-size:10px; text-decoration:none;">عرض التفاصيل ></a>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function filterApps() {
-            const term = document.getElementById('appSearch').value.toLowerCase();
-            const filtered = allApps.filter(a => a.name.toLowerCase().includes(term));
-            renderApps(filtered);
-        }
-
-        // تشغيل الجلب عند التحميل
-        window.onload = fetchApps;
-
-        // تأثير السلايدر التلقائي
-        let currentSlide = 0;
+        // تشغيل السلايدر التلقائي
+        let index = 0;
         setInterval(() => {
-            const track = document.getElementById('featuredSlider');
-            const slides = document.querySelectorAll('.slide');
-            if(slides.length > 0) {
-                currentSlide = (currentSlide + 1) % slides.length;
-                track.style.transform = `translateX(${currentSlide * 88}%)`;
-            }
-        }, 4000);
+            const track = document.getElementById('slider');
+            index = (index + 1) % 2;
+            track.style.transform = `translateX(${index * 315}px)`;
+        }, 3000);
+
+        // تشغيل الجلب عند الدخول
+        window.onload = fetchExternalApps;
     </script>
 </body>
 </html>
