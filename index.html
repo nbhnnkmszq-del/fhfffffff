@@ -3,180 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LWAZER BLACK TITANIUM | v7.0</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>LWAZER ULTIMATE | v8.0 ELITE</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Cairo:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --black: #050505;
-            --titanium: #2a2a2a;
-            --silver: #e0e0e0;
+            --black: #020202;
+            --titanium: #1a1a1a;
+            --silver: #b0b0b0;
             --white: #ffffff;
-            --glow: rgba(255, 255, 255, 0.1);
+            --accent: #f0f0f0;
+            --glow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
+        /* الأساسيات */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--black); color: var(--silver); overflow-x: hidden; }
+        body { background: var(--black); color: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* شريط الإحصائيات */
-        .stats-hub {
-            background: #000; padding: 10px; border-bottom: 1px solid var(--titanium);
-            display: flex; justify-content: space-around; font-family: 'Orbitron';
+        /* شاشة التحميل السينمائية */
+        #loader-screen {
+            position: fixed; inset: 0; background: #000; z-index: 10000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .stat { text-align: center; }
-        .stat b { display: block; color: var(--white); font-size: 16px; }
-        .stat span { font-size: 8px; color: #555; }
+        .load-bar { width: 200px; height: 1px; background: #333; position: relative; margin-top: 20px; }
+        .load-progress { width: 0%; height: 100%; background: var(--white); box-shadow: 0 0 10px var(--white); animation: loading 3s forwards; }
+        @keyframes loading { 100% { width: 100%; } }
 
-        /* الهيدر */
-        header { padding: 40px 20px; text-align: center; background: linear-gradient(to bottom, #111, transparent); }
-        .logo { font-family: 'Orbitron'; font-size: 32px; letter-spacing: 10px; color: var(--white); text-shadow: 0 0 20px var(--glow); }
-
-        /* السلايدر الفخم */
-        .slider-box { width: 100%; overflow: hidden; padding: 20px 0; }
-        .slider-inner { display: flex; gap: 15px; padding: 0 20px; transition: 0.5s ease-in-out; }
-        .card-p {
-            min-width: 80%; height: 180px; background: var(--titanium); border-radius: 25px;
-            display: flex; align-items: center; padding: 20px; position: relative;
-            border: 1px solid #333; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        /* نافذة القناة المنبثقة (Popup) */
+        .channel-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+            z-index: 9000; display: flex; align-items: center; justify-content: center; display: none;
         }
-        .card-p img { width: 80px; height: 80px; border-radius: 20px; margin-left: 15px; border: 1px solid #444; }
-
-        /* قائمة التطبيقات الأساسية */
-        .grid-container { padding: 20px; max-width: 600px; margin: 0 auto; }
-        .section-tag { font-family: 'Orbitron'; font-size: 12px; color: #666; margin-bottom: 15px; border-right: 3px solid var(--white); padding-right: 10px; }
-
-        .app-row {
-            background: rgba(255,255,255,0.02); border: 1px solid var(--titanium);
-            border-radius: 20px; padding: 15px; display: flex; align-items: center;
-            margin-bottom: 15px; transition: 0.3s;
+        .channel-card {
+            background: var(--titanium); border: 1px solid #333; border-radius: 40px;
+            padding: 40px; text-align: center; width: 90%; max-width: 400px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
         }
-        .app-row:hover { background: rgba(255,255,255,0.05); border-color: var(--white); }
-        .app-row img { width: 60px; height: 60px; border-radius: 15px; margin-left: 15px; }
-        .app-info { flex: 1; }
-        .app-info h3 { font-size: 16px; color: var(--white); }
-        .app-info p { font-size: 10px; color: #666; }
+        .channel-card i { font-size: 50px; margin-bottom: 20px; color: #ff0000; } /* أيقونة يوتيوب */
 
-        .btn-dl {
-            background: var(--white); color: #000; padding: 10px 20px; border-radius: 12px;
-            text-decoration: none; font-weight: 900; font-size: 11px; font-family: 'Orbitron';
+        /* تصميم الهيدر (فخامة التيتانيوم) */
+        header { padding: 40px 20px; text-align: center; position: relative; overflow: hidden; }
+        header::after { content: ''; position: absolute; bottom: 0; left: 25%; width: 50%; height: 1px; background: linear-gradient(90deg, transparent, #333, transparent); }
+        .logo { font-family: 'Orbitron'; font-size: 38px; font-weight: 900; letter-spacing: 12px; text-shadow: var(--glow); }
+
+        /* السلايدر المتطور (Plaird Style) */
+        .slider-area { padding: 20px 0; overflow: hidden; }
+        .slider-wrap { display: flex; gap: 20px; padding: 0 25px; transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .slide-item {
+            min-width: 85%; height: 200px; background: linear-gradient(135deg, #111, #1a1a1a);
+            border-radius: 35px; border: 1px solid #333; padding: 25px; display: flex; align-items: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
+        .slide-item img { width: 90px; height: 90px; border-radius: 22px; margin-left: 20px; border: 1px solid #333; }
 
-        /* قسم الـ API الحقيقي */
-        #api-list { margin-top: 20px; }
-        .loader { text-align: center; padding: 20px; font-family: 'Orbitron'; color: #444; }
+        /* شبكة التطبيقات (Grid) */
+        .container { padding: 25px; max-width: 700px; margin: 0 auto; }
+        .sec-title { font-family: 'Orbitron'; font-size: 13px; color: #555; margin: 30px 0 20px; border-right: 4px solid var(--white); padding-right: 12px; }
 
-        footer { text-align: center; padding: 50px; border-top: 1px solid #111; color: #222; font-size: 10px; }
+        .app-item {
+            background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 28px;
+            padding: 20px; margin-bottom: 18px; display: flex; align-items: center;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .app-item:hover { transform: scale(1.02); border-color: var(--white); background: #111; }
+        .app-icon { width: 70px; height: 70px; border-radius: 18px; margin-left: 18px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+        .app-data { flex: 1; }
+        .app-data h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+        .app-data p { font-size: 10px; color: #666; font-family: 'JetBrains Mono'; }
+
+        /* الأزرار الفخمة */
+        .dl-button {
+            background: var(--white); color: #000; padding: 12px 25px; border-radius: 14px;
+            text-decoration: none; font-weight: 900; font-family: 'Orbitron'; font-size: 11px;
+            transition: 0.3s; display: inline-block;
+        }
+        .dl-button:hover { filter: invert(1); transform: translateY(-2px); }
+
+        /* تأثيرات النبض للشهادة */
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #00ff88; display: inline-block; margin-left: 5px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        footer { text-align: center; padding: 60px; color: #222; font-family: 'Orbitron'; font-size: 10px; letter-spacing: 3px; }
     </style>
 </head>
 <body>
 
-    <div class="stats-hub">
-        <div class="stat"><b id="v-count">1,850</b><span>VISITORS</span></div>
-        <div class="stat"><b id="d-count">4,210</b><span>INSTALLED</span></div>
-        <div class="stat"><b>ONLINE</b><span style="color:green">● ACTIVE</span></div>
+    <audio id="audio-pulse" src="https://www.soundjay.com/sci-fi/sounds/sci-fi-interface-1.mp3"></audio>
+
+    <div id="loader-screen">
+        <h1 style="font-family: 'Orbitron'; font-size: 25px; letter-spacing: 5px;">LWAZER HUB</h1>
+        <div class="load-bar"><div class="load-progress"></div></div>
+        <p style="margin-top: 15px; font-size: 10px; color: #444; font-family: 'JetBrains Mono';">BOOTING_TITANIUM_SHELL...</p>
+    </div>
+
+    <div id="channel-modal" class="channel-overlay">
+        <div class="channel-card">
+            <i class="fab fa-youtube"></i>
+            <h2 style="font-family: 'Orbitron'; margin-bottom: 10px;">LWAZER ZX YT</h2>
+            <p style="font-size: 12px; color: #888; margin-bottom: 30px;">اشترك في القناة لمتابعة آخر التحديثات وحل مشاكل الشهادات فوراً!</p>
+            <a href="https://t.me/ROOT_SNAPWAZZER" class="dl-button" style="width: 100%; margin-bottom: 15px; background: #ff0000; color: #fff;">انضم لقناة التليجرام</a>
+            <button onclick="closeModal()" style="background: none; border: none; color: #555; font-size: 11px; cursor: pointer;">دخول المتجر</button>
+        </div>
     </div>
 
     <header>
-        <div class="logo">LWAZER<span> BLACK</span></div>
-        <p style="font-size: 9px; color: #444; margin-top: 10px;">TITANIUM SECURITY PROTOCOL v7.0</p>
+        <div class="logo">LWAZER<span>ZX</span></div>
+        <div style="margin-top: 15px; font-size: 10px; color: #00ff88;">
+            <span class="status-dot"></span> CERTIFICATE ACTIVE
+        </div>
     </header>
 
-    <div class="slider-box">
-        <div class="slider-inner" id="slider">
-            <div class="card-p">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/4a/d6/3d/4ad63d3b-638b-d790-2646-77880d869403/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-85-220.png/512x512bb.jpg">
-                <div>
-                    <h2 style="font-family:'Orbitron'; color:white">SCARLET</h2>
-                    <p style="font-size:11px">متجر سكارليت الأصلي - تثبيت فوري</p>
-                </div>
-            </div>
-            <div class="card-p" style="background:#1a1a1a">
+    <div class="slider-area">
+        <div class="slider-wrap" id="main-slider">
+            <div class="slide-item">
                 <img src="https://i.ibb.co/VWVr2fC/snap.png">
                 <div>
-                    <h2 style="font-family:'Orbitron'; color:white">SNAP FIX</h2>
-                    <p style="font-size:11px">نسخة الوزير لتخطي الحظر</p>
+                    <h2 style="font-family: 'Orbitron'; font-size: 20px;">SNAP LWAZER</h2>
+                    <p style="font-size: 11px; color: #888;">نسخة تخطي الحظر 2026 - v13.80</p>
+                </div>
+            </div>
+            <div class="slide-item">
+                <img src="https://i.ibb.co/f4p9Ff3/tiktok.png">
+                <div>
+                    <h2 style="font-family: 'Orbitron'; font-size: 20px;">TIKTOK MOD</h2>
+                    <p style="font-size: 11px; color: #888;">تنزيل بدون حقوق + ميزات ذهبية</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="grid-container">
-        <div class="section-tag">CORE APPLICATIONS</div>
+    <div class="container">
+        <div class="sec-title">CORE PROTOCOL APPS</div>
         
-        <div class="app-row">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/4a/d6/3d/4ad63d3b-638b-d790-2646-77880d869403/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-85-220.png/512x512bb.jpg">
-            <div class="app-info">
-                <h3>Scarlet Install</h3>
-                <p>تثبيت مباشر عبر الشهادة</p>
+        <div class="app-item">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/4a/d6/3d/4ad63d3b-638b-d790-2646-77880d869403/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-85-220.png/512x512bb.jpg" class="app-icon">
+            <div class="app-data">
+                <h3>Scarlet Pro</h3>
+                <p>INSTALLER // DIRECT_LINK</p>
             </div>
-            <a href="itms-services://?action=download-manifest&url=https://nbhnnkmszq-del.github.io/fhfffffff/scarlet.plist" onclick="countDl()" class="btn-dl">GET</a>
+            <a href="itms-services://?action=download-manifest&url=https://nbhnnkmszq-del.github.io/fhfffffff/scarlet.plist" class="dl-button">INSTALL</a>
         </div>
 
-        <div class="app-row">
-            <img src="https://i.ibb.co/f4p9Ff3/esign.png" style="width:60px; border-radius:15px">
-            <div class="app-info">
-                <h3>E-Sign Pro</h3>
-                <p>توقيع الروابط والملفات</p>
+        <div class="app-item">
+            <img src="https://i.ibb.co/f4p9Ff3/esign.png" class="app-icon">
+            <div class="app-data">
+                <h3>E-Sign Elite</h3>
+                <p>SIGNER // ENTERPRISE</p>
             </div>
-            <a href="itms-services://?action=download-manifest&url=https://nbhnnkmszq-del.github.io/fhfffffff/esign.plist" onclick="countDl()" class="btn-dl">GET</a>
+            <a href="itms-services://?action=download-manifest&url=https://nbhnnkmszq-del.github.io/fhfffffff/esign.plist" class="dl-button">INSTALL</a>
         </div>
 
-        <br>
-        <div class="section-tag">LIVE API REPO (REAL)</div>
-        <div id="api-list">
-            <div class="loader"><i class="fas fa-spinner fa-spin"></i> CONNECTING TO SERVERS...</div>
+        <div class="app-item">
+            <img src="https://i.ibb.co/0XzL0mH/wa.png" class="app-icon">
+            <div class="app-data">
+                <h3>WhatsApp Gold</h3>
+                <p>V2.24.1 // ANTI_REVOKE</p>
+            </div>
+            <a href="itms-services://?action=download-manifest&url=https://nbhnnkmszq-del.github.io/fhfffffff/esign.plist" class="dl-button">INSTALL</a>
+        </div>
+
+        <div class="sec-title">GLOBAL API REPOSITORY</div>
+        <div id="api-apps">
+            <p style="text-align: center; color: #333; font-family: 'JetBrains Mono'; padding: 20px;">CONNECTING TO SERVERS...</p>
         </div>
     </div>
 
     <footer>
-        DESIGNED BY LWAZER © 2026<br>ALL APPS ARE SIGNED AND TESTED
+        CREATED BY LWAZER ZX 61<br>ENCRYPTED & SECURED SYSTEM
     </footer>
 
     <script>
-        // نظام العدادات
-        function countDl() {
-            let c = parseInt(document.getElementById('d-count').innerText.replace(',',''));
-            document.getElementById('d-count').innerText = (c + 1).toLocaleString();
-            new Audio('https://www.soundjay.com/buttons/sounds/button-16.mp3').play();
+        // نظام التحميل والدخول
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('loader-screen').style.display = 'none';
+                document.getElementById('channel-modal').style.display = 'flex';
+                document.getElementById('audio-pulse').play();
+                fetchApps(); // جلب تطبيقات الـ API
+            }, 3000);
+        };
+
+        function closeModal() {
+            document.getElementById('channel-modal').style.display = 'none';
         }
 
-        // جلب حقيقي من الـ API بدون أخطاء
-        async function getApps() {
-            const list = document.getElementById('api-list');
+        // جلب حقيقي 100% من API GitHub (تطبيقات IPAs)
+        async function fetchApps() {
+            const container = document.getElementById('api-apps');
             try {
-                // نستخدم وسيط AllOrigins لكسر حماية CORS وجلب البيانات
+                // نستخدم وسيط AllOrigins لضمان عدم حدوث Error في الجلب
                 const res = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://api.github.com/repos/qnblackcat/uYouPlus/releases'));
-                const data = await res.json();
+                const apps = await res.json();
                 
-                list.innerHTML = '';
-                data.slice(0, 10).forEach(app => {
-                    const row = document.createElement('div');
-                    row.className = 'app-row';
-                    row.innerHTML = `
-                        <img src="https://cdn-icons-png.flaticon.com/512/5738/5738031.png" style="filter:invert(1)">
-                        <div class="app-info">
-                            <h3>${app.name.substring(0,18)}</h3>
-                            <p>SIZE: ${(app.assets[0].size/1024/1024).toFixed(1)} MB</p>
+                container.innerHTML = '';
+                apps.slice(0, 8).forEach(app => {
+                    const html = `
+                        <div class="app-item">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5738/5738031.png" class="app-icon" style="filter: brightness(0.8);">
+                            <div class="app-data">
+                                <h3>${app.name.substring(0, 18)}..</h3>
+                                <p>SIZE: ${(app.assets[0].size/1024/1024).toFixed(1)} MB // REAL_API</p>
+                            </div>
+                            <a href="${app.assets[0].browser_download_url}" class="dl-button" style="background:transparent; border:1px solid #444; color:#fff;">IPA</a>
                         </div>
-                        <a href="${app.assets[0].browser_download_url}" onclick="countDl()" class="btn-dl" style="background:transparent; border:1px solid white; color:white">IPA</a>
                     `;
-                    list.appendChild(row);
+                    container.innerHTML += html;
                 });
             } catch (e) {
-                list.innerHTML = '<p style="color:red; text-align:center">خطأ في جلب الـ API.. حاول لاحقاً</p>';
+                container.innerHTML = '<p style="color:red; text-align:center;">API FETCH FAILED</p>';
             }
         }
 
-        // تحريك السلايدر
-        let idx = 0;
+        // تحريك السلايدر التلقائي
+        let index = 0;
         setInterval(() => {
-            const s = document.getElementById('slider');
-            idx = (idx + 1) % 2;
-            s.style.transform = `translateX(${idx * 85}%)`;
-        }, 4000);
-
-        window.onload = getApps;
+            const slider = document.getElementById('main-slider');
+            index = (index + 1) % 2;
+            slider.style.transform = `translateX(${index * 88}%)`;
+        }, 4500);
     </script>
 </body>
 </html>
